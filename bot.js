@@ -5,8 +5,9 @@ var exec = require('child_process').exec;
 var parse_title = require('./parse_title.js');
 var ical = require('ical');
 
+var botname = process.argv[2] ? process.argv[2] : "bastinat0r_bot";
 
-var bot = new irc.Client('irc.freenode.net', 'bastinat0r_bot', {
+var bot = new irc.Client('irc.freenode.net', botname, {
 	channels: ['#bastinta0rbottest', 'netz39']
 });
 
