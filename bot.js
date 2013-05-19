@@ -30,9 +30,9 @@ bot.on('message', function(from, to, message) {
 	if(/^\!message\s/gi.test(message)) {
 		var str = "" + message.replace(/^\!message\s/gi, '');
 		str = "" + str.replace(/['"`]/g, '');
-		name = "" + name.replace(/['"`]/g, '');
+		name = "" + from.replace(/['"`]/g, '');
 		bot.say(to, 'Displaying on LED-Display: ' + str);
-		send_message(from, str);
+		send_message(name, str);
 	};
 
 	url = "" + message.match(/http[s]?:\/\/[\S]*/gi);
