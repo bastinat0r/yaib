@@ -8,7 +8,7 @@ var ical = require('ical');
 var botname = process.argv[2] ? process.argv[2] : "bastinat0r_bot";
 
 var bot = new irc.Client('irc.freenode.net', botname, {
-	channels: ['#bastinta0rbottest', 'netz39']
+	channels: ['#bastinta0rbottest', '#netz39']
 });
 
 bot.on('error', function(e) {
