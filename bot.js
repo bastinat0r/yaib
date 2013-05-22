@@ -20,6 +20,9 @@ bot.on('message', function(from, to, message) {
 	if(/^\!coffee/gi.test(message)) {
 		bot.say(to, 'Coffee to the world');
 	}
+	if(/^\!kekse/gi.test(message)) {
+		bot.say(to, 'Kekse für alle!');
+	}
 	if(/^\!fortune/gi.test(message)) {
 		exec('fortune', function(err, stdout, stderr) {
 			bot.say(to, stdout);
