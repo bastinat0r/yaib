@@ -25,14 +25,30 @@ function registerCommand(name, re, fn) {
 	}
 }
 
-registerCommand('status', /^!status/gi, function(from, to, message) {
+registerCommand('status', /^\!status/gi, function(from, to, message) {
 	n39Status.getStatus(function(str) {
 		bot.say(to, str); 
 	});
 });
 
+registerCommand('!rekursion', /^\!rekursion/gi, function(from, to, message) {
+	bot.say(to, 'Gib \'!rekursion\' ein, um Rekursion erklärt zu bekommen!');
+});
+
+registerCommand('!troll', /^\!troll/gi, function(from, to, message) {
+	message = "" + message.replace(/^\!troll[\s]*/gi, '');
+	var re = message.split(/;/gi);
+	util.puts(message);
+	util.puts(re);
+	var re2 = new RegExp(re.shift(), 'gi');
+	registerCommand(re, re2, function(from, to, message) {
+		bot.say(to, re.join(";"));
+		util.puts(re);
+	});
+});
+
 registerCommand('!coffee', /^\!(coffee|kaff[e]+)/gi, function(from, to, message) {
-	bot.say(to, 'Coffee to the world');
+	bot.say(to, 'Richtig heißer, kochend schwarzer Kaffee!');
 });
 registerCommand('!kekse', /^\!kekse/gi, function(from, to, message) {
 	bot.say(to, 'Kekse für alle!');
@@ -105,13 +121,38 @@ registerCommand('cloud', /cloud/gi, function(from, to, message) {
 	bot.say(to, 'BINGO!');
 });
 
-registerCommand('solaris', /cloud/gi, function(from, to, message) {
+registerCommand('solaris', /solaris/gi, function(from, to, message) {
 	bot.say(to, 'Seitdem Oracle Sun gekauft hat, ist die Welt ein dunkler Ort!');
 });
 
 registerCommand('!forkme', /^\!forkme/, function(from, to, message) {
 	bot.say(to, 'Fork me @ https://github.com/bastinat0r/yaib/');
 });
+
+registerCommand('gnu', /gnu/gi, function(from, to, message) {
+	bot.say(to, 'GNU is not UNIX!');
+});
+
+registerCommand('os2', /os[\/]?2/, function(from, to, message) {
+	bot.say(to, 'OS/2 ist ein halbes OS');
+});
+
+registerCommand('ios', /[\.\!\s\?](ios|osx)[\.\!\s\u]/gi, function(from, to, message) {
+	bot.say(to, 'FANBOOOOOYS!');
+});
+
+registerCommand('android', /android/gi, function(from, to, message) {
+	bot.say(to, 'Commander Data, mit seiner 1Bit Speicherkapazität …');
+});
+
+registerCommand('fedora', /fedora/gi, function(from, to, message) {
+	bot.say(to, 'Federboa?');
+});
+
+registerCommand('gentoo', /gentoo/gi, function(from, to, message) {
+	bot.say(to, 'Habt ihr auch den richtigen Bart dafür?');
+});
+
 
 var help = "";
 for(var i in commands) {
@@ -159,7 +200,7 @@ function send_str(str) {
 
 timers.setTimeout(function() {
 	bot.join('#bastinat0rbottest');
-//	bot.join('#netz39');
+	bot.join('#netz39');
 }, 1000);
 
 function getEvents(cb) {
