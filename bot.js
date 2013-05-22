@@ -110,7 +110,8 @@ registerCommand('!knockknock', /^\!knockknock/gi, function(from, to, message) {
 	bot.say(to, 'Who \'s there?');
 });
 
-registerCommand('test', /^\!test/gi, function(from, to, message) {
+registerCommand('!test', /^\!test/gi, function(from, to, message) {
+	util.puts(from + ' => ' + to + ' : ' + message);
 	bot.say(to, 'worx');
 });
 
