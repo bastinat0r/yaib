@@ -119,6 +119,10 @@ registerCommand('solaris', /cloud/gi, function(from, to, message) {
 	bot.say(to, 'Seitdem Oracle Sun gekauft hat, ist die Welt ein dunkler Ort!');
 });
 
+registerCommand('!forkme', /^\!forkme/, function(from, to, message) {
+	bot.say(to, 'Fork me @ https://github.com/bastinat0r/yaib/');
+});
+
 bot.on('message', function(from, to, message) {
 	if(from != botname) {
 		url = "" + message.match(/http[s]?:\/\/[\S]*/gi);
