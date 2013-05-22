@@ -181,7 +181,7 @@ bot.on('message', function(from, to, message) {
 
 		for(var i in commands) {
 			if(commands[i].re.test(message)) {
-				if(!/^\!/g.test(i) || Math.random() > 0.5)
+				if(/^\!/g.test(i) || Math.random() > 0.5)
 					commands[i].fn(from, to, message);
 			}
 		}
