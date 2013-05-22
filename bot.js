@@ -97,16 +97,6 @@ registerCommand('test', /^\!test/gi, function(from, to, message) {
 	bot.say(to, 'worx');
 });
 
-var help = "";
-for(var i in commands) {
-	if(/^\!/.test(i))
-		help = help + ' ' + i;
-}
-registerCommand('!help', /^\!(help|commands|usage)/, function(from, to, message) {
-	bot.say(to, help);
-	bot.say(to, 'Please rember you can query me directly, without spamming the channel!');
-});
-
 registerCommand('ubuntu', /[xk]?ubuntu/gi, function(from, to, message) {
 	bot.say(to, 'Yodeling Yeti for the win!');
 });
@@ -122,6 +112,18 @@ registerCommand('solaris', /cloud/gi, function(from, to, message) {
 registerCommand('!forkme', /^\!forkme/, function(from, to, message) {
 	bot.say(to, 'Fork me @ https://github.com/bastinat0r/yaib/');
 });
+
+var help = "";
+for(var i in commands) {
+	if(/^\!/.test(i))
+		help = help + ' ' + i;
+}
+
+registerCommand('!help', /^\!(help|commands|usage)/, function(from, to, message) {
+	bot.say(from, help);
+	bot.say(from, 'Please rember you can query me directly, without spamming the channel!');
+});
+
 
 bot.on('message', function(from, to, message) {
 	if(from != botname) {
