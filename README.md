@@ -1,9 +1,4 @@
 # IRC-Bot for Netz39
 ## Comands:
-* !upcoming - upcoming events
-* !next - next events
-* !fortune - fortune cookie command
-* !message - display something on the LED-Display 
-* !tweets - show recent tweets
-
+Just use '!help' to get a list of commands.
 Automatically fetches titles from pasted Links

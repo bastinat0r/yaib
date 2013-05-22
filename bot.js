@@ -43,19 +43,19 @@ registerCommand('!fortune', /^\!fortune/gi, function(from, to, message) {
 	});
 });
 
-registerCommand('jehova', /jehova/gi, function(from,to,message) {
+registerCommand('jehova', /jehova/gi, function(from, to, message) {
 	bot.say(to, 'Ich sagte keiner wirft einen Stein, selbst wenn – und das betone ich ausdrücklich – selbst wenn jemand Jehova sagt!');
 });
 
-registerCommand('windows', /windows/gi, function(from,to,message) {
+registerCommand('windows', /windows/gi, function(from, to, message) {
 	bot.say(to, 'Wer "Windows" sagt, braucht nicht mit Steinen zu werfen!');
 });
 
-registerCommand('debian', /debian/gi, function(from,to,message) {
+registerCommand('debian', /debian/gi, function(from, to, message) {
 	bot.say(to, 'Wo "Debian" gesagt wird, sind Trolle nicht weit!');
 });
 
-registerCommand('freebsd', /free(\-)?bsd/gi, function(from,to,message) {
+registerCommand('freebsd', /free(\-)?bsd/gi, function(from, to, message) {
 	bot.say(to, 'Das hat dir der Teufel gesagt!');
 });
 
@@ -94,7 +94,6 @@ registerCommand('!knockknock', /^\!knockknock/gi, function(from, to, message) {
 });
 
 registerCommand('test', /^\!test/gi, function(from, to, message) {
-	util.puts(from + ' => ' + to + ' : ' + message);
 	bot.say(to, 'worx');
 });
 
@@ -105,6 +104,7 @@ for(var i in commands) {
 }
 registerCommand('!help', /^\!(help|commands|usage)/, function(from, to, message) {
 	bot.say(to, help);
+	bot.say(to, 'Please rember you can query me directly, without spamming the channel!');
 });
 
 registerCommand('ubuntu', /[xk]?ubuntu/gi, function(from, to, message) {
@@ -125,6 +125,9 @@ registerCommand('!forkme', /^\!forkme/, function(from, to, message) {
 
 bot.on('message', function(from, to, message) {
 	if(from != botname) {
+		if(to == botname) {
+			to = from;
+		}
 		url = "" + message.match(/http[s]?:\/\/[\S]*/gi);
 		if(url != "") {
 			parse_title.from_url(url, function(title) {
@@ -135,16 +138,6 @@ bot.on('message', function(from, to, message) {
 		for(var i in commands) {
 			if(commands[i].re.test(message)) {
 				commands[i].fn(from, to, message);
-			}
-		}
-	}
-});
-
-bot.on('pm', function(from, message) {
-	if(from != botname) {
-		for(var i in commands) {
-			if(commands[i].re.test(message)) {
-				commands[i].fn(from, from, message);
 			}
 		}
 	}
@@ -164,7 +157,7 @@ function send_str(str) {
 
 timers.setTimeout(function() {
 	bot.join('#bastinat0rbottest');
-	bot.join('#netz39');
+//	bot.join('#netz39');
 }, 1000);
 
 function getEvents(cb) {
