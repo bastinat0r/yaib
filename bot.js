@@ -38,12 +38,13 @@ registerCommand('!rekursion', /^\!rekursion/gi, function(from, to, message) {
 registerCommand('!troll', /^\!troll/gi, function(from, to, message) {
 	message = "" + message.replace(/^\!troll[\s]*/gi, '');
 	var re = message.split(/;/gi);
+	if(re[0].length < 4 || !re[1])
+		return;
 	util.puts(message);
 	util.puts(re);
 	var re2 = new RegExp(re.shift(), 'gi');
 	registerCommand(re, re2, function(from, to, message) {
 		bot.say(to, re.join(";"));
-		util.puts(re);
 	});
 });
 
@@ -180,7 +181,8 @@ bot.on('message', function(from, to, message) {
 
 		for(var i in commands) {
 			if(commands[i].re.test(message)) {
-				commands[i].fn(from, to, message);
+				if(!/^\!/g.test(i) || Math.random() > 0.5)
+					commands[i].fn(from, to, message);
 			}
 		}
 	}
