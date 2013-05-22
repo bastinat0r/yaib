@@ -4,6 +4,7 @@ var timers = require('timers');
 var exec = require('child_process').exec;
 var parse_title = require('./parse_title.js');
 var ical = require('ical');
+var twittersearch = require('./search.js');
 
 var botname = process.argv[2] ? process.argv[2] : "bastinat0r_bot";
 
@@ -57,6 +58,12 @@ bot.on('message', function(from, to, message) {
 			bot.say(to, events[0].description);
 		});
 	};
+	
+	if(/^\!tweets/gi.test(message)) {
+		twittersearch.request('netz39', function(answer) {
+			bot.say(to, twittersearch.parseAnswer(answer));
+		});
+	}
 });
 
 function send_message(name, str) {
@@ -74,7 +81,7 @@ function send_str(str) {
 timers.setTimeout(function() {
 	bot.join('#bastinat0rbottest');
 	bot.join('#netz39');
-}, 100);
+}, 1000);
 
 function getEvents(cb) {
 	ical.fromURL('http://grical.org/s/?query=%23netz39&view=ical', {}, function(err, data) {
