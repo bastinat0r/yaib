@@ -31,7 +31,7 @@ registerCommand('status', /^!status/gi, function(from, to, message) {
 	});
 });
 
-registerCommand('!coffee', /^\!coffee/gi, function(from, to, message) {
+registerCommand('!coffee', /^\!(coffee|kaff[e]+)/gi, function(from, to, message) {
 	bot.say(to, 'Coffee to the world');
 });
 registerCommand('!kekse', /^\!kekse/gi, function(from, to, message) {
@@ -87,6 +87,10 @@ registerCommand('!tweets', /^\!tweets/gi, function(from, to, message) {
 	twittersearch.request('netz39', function(answer) {
 		bot.say(to, twittersearch.parseAnswer(answer));
 	});
+});
+
+registerCommand('!knockknock', /^\!knockknock/gi, function(from, to, message) {
+	bot.say(to, 'Who \'s there?');
 });
 
 var help = "";
