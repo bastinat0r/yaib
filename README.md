@@ -4,5 +4,6 @@
 * !next - next events
 * !fortune - fortune cookie command
 * !message - display something on the LED-Display 
+* !tweets - show recent tweets
 
 Automatically fetches titles from pasted Links
