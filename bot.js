@@ -93,6 +93,11 @@ registerCommand('!knockknock', /^\!knockknock/gi, function(from, to, message) {
 	bot.say(to, 'Who \'s there?');
 });
 
+registerCommand('test', /^\!test/gi, function(from, to, message) {
+	util.puts(from + ' => ' + to + ' : ' + message);
+	bot.say(to, 'worx');
+});
+
 var help = "";
 for(var i in commands) {
 	if(/^\!/.test(i))
@@ -100,6 +105,18 @@ for(var i in commands) {
 }
 registerCommand('!help', /^\!(help|commands|usage)/, function(from, to, message) {
 	bot.say(to, help);
+});
+
+registerCommand('ubuntu', /[xk]?ubuntu/gi, function(from, to, message) {
+	bot.say(to, 'Yodeling Yeti for the win!');
+});
+
+registerCommand('cloud', /cloud/gi, function(from, to, message) {
+	bot.say(to, 'BINGO!');
+});
+
+registerCommand('solaris', /cloud/gi, function(from, to, message) {
+	bot.say(to, 'Seitdem Oracle Sun gekauft hat, ist die Welt ein dunkler Ort!');
 });
 
 bot.on('message', function(from, to, message) {
@@ -114,6 +131,16 @@ bot.on('message', function(from, to, message) {
 		for(var i in commands) {
 			if(commands[i].re.test(message)) {
 				commands[i].fn(from, to, message);
+			}
+		}
+	}
+});
+
+bot.on('pm', function(from, message) {
+	if(from != botname) {
+		for(var i in commands) {
+			if(commands[i].re.test(message)) {
+				commands[i].fn(from, from, message);
 			}
 		}
 	}
