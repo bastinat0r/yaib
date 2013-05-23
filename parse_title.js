@@ -19,6 +19,8 @@ function from_url(url, cb) {
 			res.on('end', function() {
 				parse_title(data, cb); 
 			});
+		}).on('error', function(e) {
+			util.puts(e);
 		});
 	};
 	if(/http:\/\//gi.test(url)) {
@@ -30,7 +32,9 @@ function from_url(url, cb) {
 			res.on('end', function() {
 				parse_title(data, cb); 
 			});
-		});
+		}).on('error', function(e) {
+			util.puts(e);
+		});;
 	};
 };
 

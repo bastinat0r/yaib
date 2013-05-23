@@ -35,8 +35,9 @@ registerCommand('!rekursion', /^\!rekursion/gi, function(from, to, message) {
 	bot.say(to, 'Gib \'!rekursion\' ein, um Rekursion erklärt zu bekommen!');
 });
 
+/*
 registerCommand('!troll', /^\!troll/gi, function(from, to, message) {
-	message = "" + message.replace(/^\!troll[\s]*/gi, '');
+	message = "" + message.replace(/^\!troll[\s]*//*gi, '');
 	var re = message.split(/;/gi);
 	if(re[0].length < 4 || !re[1])
 		return;
@@ -47,6 +48,7 @@ registerCommand('!troll', /^\!troll/gi, function(from, to, message) {
 		bot.say(to, re.join(";"));
 	});
 });
+*/
 
 registerCommand('!coffee', /^\!(coffee|kaff[e]+)/gi, function(from, to, message) {
 	bot.say(to, 'Richtig heißer, kochend schwarzer Kaffee!');
