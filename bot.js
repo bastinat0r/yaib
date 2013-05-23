@@ -25,20 +25,20 @@ function registerCommand(name, re, fn) {
 	}
 }
 
-registerCommand('status', /^\!status/gi, function(from, to, message) {
+registerCommand('status', /^\!status/i, function(from, to, message) {
 	n39Status.getStatus(function(str) {
 		bot.say(to, str); 
 	});
 });
 
-registerCommand('!rekursion', /^\!rekursion/gi, function(from, to, message) {
+registerCommand('!rekursion', /^\!rekursion/i, function(from, to, message) {
 	bot.say(to, 'Gib \'!rekursion\' ein, um Rekursion erklärt zu bekommen!');
 });
 
 /*
-registerCommand('!troll', /^\!troll/gi, function(from, to, message) {
+registerCommand('!troll', /^\!troll/i, function(from, to, message) {
 	message = "" + message.replace(/^\!troll[\s]*//*gi, '');
-	var re = message.split(/;/gi);
+	var re = message.split(/;/i);
 	if(re[0].length < 4 || !re[1])
 		return;
 	util.puts(message);
@@ -50,36 +50,36 @@ registerCommand('!troll', /^\!troll/gi, function(from, to, message) {
 });
 */
 
-registerCommand('!coffee', /^\!(coffee|kaff[e]+)/gi, function(from, to, message) {
+registerCommand('!coffee', /^\!(coffee|kaff[e]+)/i, function(from, to, message) {
 	bot.say(to, 'Richtig heißer, kochend schwarzer Kaffee!');
 });
-registerCommand('!kekse', /^\!kekse/gi, function(from, to, message) {
+registerCommand('!kekse', /^\!kekse/i, function(from, to, message) {
 	bot.say(to, 'Kekse für alle!');
 });
-registerCommand('!fortune', /^\!fortune/gi, function(from, to, message) {
-	exec('fortune', function(err, stdout, stderr) {
+registerCommand('!fortune', /^\!fortune/i, function(from, to, message) {
+	exec('fortune -s', function(err, stdout, stderr) {
 		bot.say(to, stdout);
 	});
 });
 
-registerCommand('jehova', /jehova/gi, function(from, to, message) {
+registerCommand('jehova', /jehova/i, function(from, to, message) {
 	bot.say(to, 'Ich sagte keiner wirft einen Stein, selbst wenn – und das betone ich ausdrücklich – selbst wenn jemand Jehova sagt!');
 });
 
-registerCommand('windows', /windows/gi, function(from, to, message) {
+registerCommand('windows', /windows/i, function(from, to, message) {
 	bot.say(to, 'Wer "Windows" sagt, braucht nicht mit Steinen zu werfen!');
 });
 
-registerCommand('debian', /debian/gi, function(from, to, message) {
+registerCommand('debian', /debian/i, function(from, to, message) {
 	bot.say(to, 'Wo "Debian" gesagt wird, sind Trolle nicht weit!');
 });
 
-registerCommand('freebsd', /free(\-)?bsd/gi, function(from, to, message) {
+registerCommand('freebsd', /free(\-)?bsd/i, function(from, to, message) {
 	bot.say(to, 'Das hat dir der Teufel gesagt!');
 });
 
-registerCommand('!message', /^\!message\s/gi, function(from, to, message) {
-	var str = "" + message.replace(/^\!message\s/gi, '');
+registerCommand('!message', /^\!message\s/i, function(from, to, message) {
+	var str = "" + message.replace(/^\!message\s/i, '');
 	str = "" + str.replace(/['"`]/g, '');
 	name = "" + from.replace(/['"`]/g, '');
 	bot.say(to, 'Displaying on LED-Display: ' + str);
@@ -87,7 +87,7 @@ registerCommand('!message', /^\!message\s/gi, function(from, to, message) {
 });
 
 
-registerCommand('!upcoming', /^\!upcoming/gi, function(from, to, message) {
+registerCommand('!upcoming', /^\!upcoming/i, function(from, to, message) {
 	getEvents(function(events) {
 		for(var i in events) {
 			bot.say(to, events[i].start + ' - ' + events[i].summary);
@@ -95,45 +95,45 @@ registerCommand('!upcoming', /^\!upcoming/gi, function(from, to, message) {
 	});
 });
 	
-registerCommand('!next', /^\!next/gi, function(from, to, message) {
+registerCommand('!next', /^\!next/i, function(from, to, message) {
 	getEvents(function(events) {
 		bot.say(to, events[0].start + ' - ' + events[0].summary);
 		bot.say(to, events[0].description);
 	});
 });
 	
-registerCommand('!tweets', /^\!tweets/gi, function(from, to, message) {
+registerCommand('!tweets', /^\!tweets/i, function(from, to, message) {
 	twittersearch.request('netz39', function(answer) {
 		bot.say(to, twittersearch.parseAnswer(answer));
 	});
 });
 
-registerCommand('!knockknock', /^\!knockknock/gi, function(from, to, message) {
+registerCommand('!knockknock', /^\!knockknock/i, function(from, to, message) {
 	bot.say(to, 'Who \'s there?');
 });
 
-registerCommand('!test', /^\!test/gi, function(from, to, message) {
+registerCommand('!test', /^\!test/i, function(from, to, message) {
 	util.puts(from + ' => ' + to + ' : ' + message);
 	bot.say(to, 'worx');
 });
 
-registerCommand('ubuntu', /[xk]?ubuntu/gi, function(from, to, message) {
+registerCommand('ubuntu', /[xk]?ubuntu/i, function(from, to, message) {
 	bot.say(to, 'Yodeling Yeti for the win!');
 });
 
-registerCommand('cloud', /cloud/gi, function(from, to, message) {
+registerCommand('cloud', /cloud/i, function(from, to, message) {
 	bot.say(to, 'BINGO!');
 });
 
-registerCommand('solaris', /solaris/gi, function(from, to, message) {
+registerCommand('solaris', /solaris/i, function(from, to, message) {
 	bot.say(to, 'Seitdem Oracle Sun gekauft hat, ist die Welt ein dunkler Ort!');
 });
 
 registerCommand('!forkme', /^\!forkme/, function(from, to, message) {
-	bot.say(to, 'Fork me @ https://github.com/bastinat0r/yaib/');
+	bot.say(to, 'Fork me @ https://ithub.com/bastinat0r/yaib/');
 });
 
-registerCommand('gnu', /gnu/gi, function(from, to, message) {
+registerCommand('gnu', /gnu/i, function(from, to, message) {
 	bot.say(to, 'GNU is not UNIX!');
 });
 
@@ -141,20 +141,24 @@ registerCommand('os2', /os[\/]?2/, function(from, to, message) {
 	bot.say(to, 'OS/2 ist ein halbes OS');
 });
 
-registerCommand('ios', /[\.\!\s\?](ios|osx)[\.\!\s\u]/gi, function(from, to, message) {
+registerCommand('ios', /[\.\!\s\?](ios|osx)[\.\!\s\u]/i, function(from, to, message) {
 	bot.say(to, 'FANBOOOOOYS!');
 });
 
-registerCommand('android', /android/gi, function(from, to, message) {
+registerCommand('android', /android/i, function(from, to, message) {
 	bot.say(to, 'Commander Data, mit seiner 1Bit Speicherkapazität …');
 });
 
-registerCommand('fedora', /fedora/gi, function(from, to, message) {
+registerCommand('fedora', /fedora/i, function(from, to, message) {
 	bot.say(to, 'Federboa?');
 });
 
-registerCommand('gentoo', /gentoo/gi, function(from, to, message) {
+registerCommand('gentoo', /gentoo/i, function(from, to, message) {
 	bot.say(to, 'Habt ihr auch den richtigen Bart dafür?');
+});
+
+registerCommand('passwort', /passwor[td]/i, function(from, to, message) {
+	bot.say(to, 'Someone didn\'t bother reading my carefully prepared memo on commonly-used passwords. Now, then, as I so meticulously pointed out, the four most-used passwords are: love, sex, secret, and... god. So, would your holiness care to change her password?');
 });
 
 
@@ -175,8 +179,8 @@ bot.on('message', function(from, to, message) {
 		if(to == botname) {
 			to = from;
 		}
-		url = "" + message.match(/http[s]?:\/\/[\S]*/gi);
-		if(url != "") {
+		url = "" + message.match(/http[s]?:\/\/[\S]*/i);
+		if(url != "" && url != 'null') {
 			parse_title.from_url(url, function(title) {
 				bot.say(to, title);
 			});
@@ -184,8 +188,9 @@ bot.on('message', function(from, to, message) {
 
 		for(var i in commands) {
 			if(commands[i].re.test(message)) {
-				if(/^\!/g.test(i) || Math.random() > 0.5)
+				if(/^\!/g.test(i) || Math.random() > 0.5) {
 					commands[i].fn(from, to, message);
+				}
 			}
 		}
 	}
