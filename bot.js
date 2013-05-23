@@ -31,6 +31,10 @@ registerCommand('status', /^\!status/i, function(from, to, message) {
 	});
 });
 
+registerCommand('re', /^re.?$/i, function(from, to, message) {
+	bot.say(to, 'wb!');
+});
+
 registerCommand('!rekursion', /^\!rekursion/i, function(from, to, message) {
 	bot.say(to, 'Gib \'!rekursion\' ein, um Rekursion erklärt zu bekommen!');
 });
