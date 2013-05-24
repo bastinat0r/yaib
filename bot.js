@@ -25,7 +25,13 @@ function registerCommand(name, re, fn) {
 	}
 }
 
-registerCommand('!apokalypse', /^!apo[ck]alypse/i, function(from, to, message) {
+registerCommand('!hase', /^\!hase/i, function(from, to, message) {
+	bot.say(to,'(\\_/)')
+	bot.say(to,'(o.o)')
+	bot.say(to,'(")(")')
+});
+
+registerCommand('!apokalypse', /^\!apo[ck]alypse/i, function(from, to, message) {
 	bot.say(to, 'You have ' + (Math.pow(2, 31) - (new Date()).getTime() / 1000).toFixed(3) + 's left till the world as we know it will come to an end!');
 });
 
