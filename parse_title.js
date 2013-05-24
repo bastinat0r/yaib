@@ -5,6 +5,8 @@ var util = require('util');
 function parse_title(html, cb) {
 		html = "" + html.replace(/[\r\n]/g, '');
 		html = "" + html.match(/<\s*title[^>]*>.*<\s*\/\s*title[^>]*>/gi);
+		if(html == null)
+			return;
 		html = html.replace(/<[\s\/]*title[^>]*>/gi, '');
 		cb(html);
 };

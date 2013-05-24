@@ -188,7 +188,7 @@ bot.on('message', function(from, to, message) {
 			to = from;
 		}
 		url = "" + message.match(/http[s]?:\/\/[\S]*/i);
-		if(url != "" && url != 'null') {
+		if(url != "") {
 			parse_title.from_url(url, function(title) {
 				bot.say(to, title);
 			});
