@@ -32,7 +32,7 @@ registerCommand('!hase', /^\!hase/i, function(from, to, message) {
 });
 
 registerCommand('!apokalypse', /^\!apo[ck]alypse/i, function(from, to, message) {
-	bot.say(to, 'You have ' + (Math.pow(2, 31) - (new Date()).getTime() / 1000).toFixed(3) + 's left till the world as we know it will come to an end!');
+	bot.say(to, 'You have ' + (Math.pow(2, 31) - (new Date()).getTime() / 1000).toFixed(3) + 's left till the world as we know it will come to an end! Cthulu is coming.   ^(;,;)^');
 });
 
 registerCommand('status', /^\!status/i, function(from, to, message) {
