@@ -61,8 +61,8 @@ registerCommand('!troll', /^\!troll/i, function(from, to, message) {
 registerCommand('!coffee', /^\!(coffee|kaff[e]+)/i, function(from, to, message) {
 	bot.say(to, 'Richtig heißer, kochend schwarzer Kaffee!');
 });
-registerCommand('!kekse', /^\!kekse/i, function(from, to, message) {
-	bot.say(to, 'Kekse für alle!');
+registerCommand('!keks(e)?', /^\!kekse/i, function(from, to, message) {
+	bot.say(to, 'Hat irgendjemand die Kekfe gefehn? Ich finde fie nicht. *Schmatzgeräusch*');
 });
 registerCommand('!fortune', /^\!fortune/i, function(from, to, message) {
 	exec('fortune -s', function(err, stdout, stderr) {
