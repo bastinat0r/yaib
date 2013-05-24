@@ -4,11 +4,11 @@ var util = require('util');
 
 function parse_title(html, cb) {
 		html = "" + html.replace(/[\r\n]/g, '');
-		html = "" + html.match(/<\s*title[^>]*>.*<\s*\/\s*title[^>]*>/gi);
-		if(html == null)
+		title =  html.match(/<\s*title[^>]*>.*<\s*\/\s*title[^>]*>/gi);
+		if(title == null)
 			return;
-		html = html.replace(/<[\s\/]*title[^>]*>/gi, '');
-		cb(html);
+		title = ("" + title).replace(/<[\s\/]*title[^>]*>/gi, '');
+		cb(title);
 };
 
 function from_url(url, cb) {
