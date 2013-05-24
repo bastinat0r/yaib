@@ -25,6 +25,10 @@ function registerCommand(name, re, fn) {
 	}
 }
 
+registerCommand('!apokalypse', /^!apo[ck]alypse/i, function(from, to, message) {
+	bot.say(to, 'You have ' + (Math.pow(2, 31) - (new Date()).getTime() / 1000).toFixed(3) + 's left till the world as we know it will come to an end!');
+});
+
 registerCommand('status', /^\!status/i, function(from, to, message) {
 	n39Status.getStatus(function(str) {
 		bot.say(to, str); 
@@ -134,7 +138,7 @@ registerCommand('solaris', /solaris/i, function(from, to, message) {
 });
 
 registerCommand('!forkme', /^\!forkme/, function(from, to, message) {
-	bot.say(to, 'Fork me @ https://ithub.com/bastinat0r/yaib/');
+	bot.say(to, 'Fork me @ https://github.com/bastinat0r/yaib/');
 });
 
 registerCommand('gnu', /gnu/i, function(from, to, message) {
