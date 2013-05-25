@@ -1,7 +1,7 @@
 module.exports.list = [
 	{
 		re : /^re.?$/i,
-		text : ['wb']
+		text : ['wb', 'Bock!']
 	},
 	{
 		re : /gnu/i,
@@ -64,15 +64,18 @@ module.exports.list = [
 		text : ['Na hoffentlich verklagt uns keiner!']
 	},
 	{
-		re : /general/,
+		re : /general/i,
 		text : ['General! *Salutiergeräush*']
 	},
 	{
-		re : /privat/,
+		re : /privat/i,
 		text : ['Privat! *Salutiergeräush*']
 	},
 	{
-		re : /major/,
+		re : /major/i,
 		text : ['Major! *Salutiergeräusch*']
 	},
+	{
+		re : /moin/i,
+		text : ['Moinmoin!'],
 ]
