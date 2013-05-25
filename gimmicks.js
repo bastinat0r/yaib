@@ -78,4 +78,14 @@ module.exports.list = [
 	{
 		re : /moin/i,
 		text : ['Moinmoin!'],
+	},
+	{
+		re : /ruby/i,
+		text : ['Rubyrubyruby – Ahahaha ♬']
+	},
+	{
+		re : /python/i,
+		text : ['Fliegender Zirkus!']
+	},
+
 ]
