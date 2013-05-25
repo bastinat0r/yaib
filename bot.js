@@ -6,8 +6,10 @@ var parse_title = require('./parse_title.js');
 var ical = require('ical');
 var twittersearch = require('./search.js');
 var n39Status = require('./n39SpaceApi.js');
-
+var gimmicks = require('./gimmicks.js').list;
 var botname = process.argv[2] ? process.argv[2] : "bastinat0r_bot";
+
+var trollprob = 1;
 
 var bot = new irc.Client('irc.freenode.net', botname, {
 	channels: ['#bastinta0rbottest', '#netz39']
@@ -25,6 +27,18 @@ function registerCommand(name, re, fn) {
 	}
 }
 
+registerCommand('!trollup', /^\!trollup/i, function(from, to, message) {
+	trollprob = trollprob * 1.3;
+	if(trollprob > 1)
+		trollprob = 1;
+	bot.say(to, 'Trollwahrscheinlichkeit: ' + trollprob.toFixed(2));
+});
+
+registerCommand('!trolldown', /^\!trolldown/i, function(from, to, message) {
+	trollprob = trollprob * 0.7;
+	bot.say(to, 'Trollwahrscheinlichkeit: ' + trollprob.toFixed(2));
+});
+
 registerCommand('!hase', /^\!hase/i, function(from, to, message) {
 	bot.say(to,'(\\_/)')
 	bot.say(to,'(o.o)')
@@ -35,14 +49,10 @@ registerCommand('!apokalypse', /^\!apo[ck]alypse/i, function(from, to, message) 
 	bot.say(to, 'You have ' + (Math.pow(2, 31) - (new Date()).getTime() / 1000).toFixed(3) + 's left till the world as we know it will come to an end! Cthulu is coming.   ^(;,;)^');
 });
 
-registerCommand('status', /^\!status/i, function(from, to, message) {
+registerCommand('!status', /^\!status/i, function(from, to, message) {
 	n39Status.getStatus(function(str) {
 		bot.say(to, str); 
 	});
-});
-
-registerCommand('re', /^re.?$/i, function(from, to, message) {
-	bot.say(to, 'wb!');
 });
 
 registerCommand('!rekursion', /^\!rekursion/i, function(from, to, message) {
@@ -76,21 +86,6 @@ registerCommand('!fortune', /^\!fortune/i, function(from, to, message) {
 	});
 });
 
-registerCommand('jehova', /jehova/i, function(from, to, message) {
-	bot.say(to, 'Ich sagte keiner wirft einen Stein, selbst wenn – und das betone ich ausdrücklich – selbst wenn jemand Jehova sagt!');
-});
-
-registerCommand('windows', /windows/i, function(from, to, message) {
-	bot.say(to, 'Wer "Windows" sagt, braucht nicht mit Steinen zu werfen!');
-});
-
-registerCommand('debian', /debian/i, function(from, to, message) {
-	bot.say(to, 'Wo "Debian" gesagt wird, sind Trolle nicht weit!');
-});
-
-registerCommand('freebsd', /free(\-)?bsd/i, function(from, to, message) {
-	bot.say(to, 'Das hat dir der Teufel gesagt!');
-});
 
 registerCommand('!message', /^\!message\s/i, function(from, to, message) {
 	var str = "" + message.replace(/^\!message\s/i, '');
@@ -131,48 +126,8 @@ registerCommand('!test', /^\!test/i, function(from, to, message) {
 	bot.say(to, 'worx');
 });
 
-registerCommand('ubuntu', /[xk]?ubuntu/i, function(from, to, message) {
-	bot.say(to, 'Yodeling Yeti for the win!');
-});
-
-registerCommand('cloud', /cloud/i, function(from, to, message) {
-	bot.say(to, 'BINGO!');
-});
-
-registerCommand('solaris', /solaris/i, function(from, to, message) {
-	bot.say(to, 'Seitdem Oracle Sun gekauft hat, ist die Welt ein dunkler Ort!');
-});
-
 registerCommand('!forkme', /^\!forkme/, function(from, to, message) {
 	bot.say(to, 'Fork me @ https://github.com/bastinat0r/yaib/');
-});
-
-registerCommand('gnu', /gnu/i, function(from, to, message) {
-	bot.say(to, 'GNU is not UNIX!');
-});
-
-registerCommand('os2', /os[\/]?2/, function(from, to, message) {
-	bot.say(to, 'OS/2 ist ein halbes OS');
-});
-
-registerCommand('ios', /[\.\!\s\?](ios|osx)[\.\!\s\u]/i, function(from, to, message) {
-	bot.say(to, 'FANBOOOOOYS!');
-});
-
-registerCommand('android', /android/i, function(from, to, message) {
-	bot.say(to, 'Commander Data, mit seiner 1Bit Speicherkapazität …');
-});
-
-registerCommand('fedora', /fedora/i, function(from, to, message) {
-	bot.say(to, 'Federboa?');
-});
-
-registerCommand('gentoo', /gentoo/i, function(from, to, message) {
-	bot.say(to, 'Habt ihr auch den richtigen Bart dafür?');
-});
-
-registerCommand('passwort', /passwor[td]/i, function(from, to, message) {
-	bot.say(to, 'Someone didn\'t bother reading my carefully prepared memo on commonly-used passwords. Now, then, as I so meticulously pointed out, the four most-used passwords are: love, sex, secret, and... god. So, would your holiness care to change her password?');
 });
 
 
@@ -204,6 +159,13 @@ bot.on('message', function(from, to, message) {
 			if(commands[i].re.test(message)) {
 				if(/^\!/g.test(i) || Math.random() > 0.5) {
 					commands[i].fn(from, to, message);
+				}
+			}
+		}
+		for(var i in gimmicks) {
+			if(gimmicks[i].re.test(message)) {
+				if(Math.random() < trollprob) {
+					bot.say(to, gimmicks[i].text[Math.floor(Math.random()*gimmicks[i].text.length)]);
 				}
 			}
 		}
