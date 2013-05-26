@@ -53,7 +53,7 @@ module.exports.list = [
 	},
 	{
 		re : /debian/i,
-		text : ['Wo "Debian" gesagt wird, sind Trolle nicht weit!', 'Mit links- oder Rechtsdrehendem Debianstrudel?']
+ 		text : ['Wo "Debian" gesagt wird, sind Trolle nicht weit!', 'Mit links- oder Rechtsdrehendem Debianstrudel?', '         (__) \n         (oo) \n   /------\\/ \n  / |    ||   \n *  /\\---/\\ \n    ~~   ~~   \n...."Have you mooed today?"...\n']
 	},
 	{
 		re : /free(\-)?bsd/i,
@@ -68,8 +68,12 @@ module.exports.list = [
 		text : ['General! *Salutiergeräush*']
 	},
 	{
-		re : /privat/i,
-		text : ['Privat! *Salutiergeräush*']
+		re : /(kernel|colonel)/i,
+		text : ['General! *Salutiergeräush*']
+	},
+	{
+		re : /private/i,
+		text : ['Kernel Panic! *Salutiergeräush*']
 	},
 	{
 		re : /major/i,
