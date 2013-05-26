@@ -91,5 +91,13 @@ module.exports.list = [
 		re : /python/i,
 		text : ['Fliegender Zirkus!']
 	},
+	{
+		re : /schlaf(en)?/i,
+		text : ['Aaaach, Schlaf wird überbewertet!']
+	},
+	{
+		re : /Schaaf/i,
+		text : ['Aaaach, Schaf wird überbewertet!']
+	},
 
 ]
