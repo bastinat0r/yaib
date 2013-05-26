@@ -53,7 +53,7 @@ module.exports.list = [
 	},
 	{
 		re : /debian/i,
- 		text : ['Wo "Debian" gesagt wird, sind Trolle nicht weit!', 'Mit links- oder Rechtsdrehendem Debianstrudel?', '         (__) \n         (oo) \n   /------\\/ \n  / |    ||   \n *  /\\---/\\ \n    ~~   ~~   \n...."Have you mooed today?"...\n']
+ 		text : ['Wo "Debian" gesagt wird, sind Trolle nicht weit!', 'Mit links- oder rechtsdrehendem Debianstrudel?', '         (__) \n         (oo) \n   /------\\/ \n  / |    ||   \n *  /\\---/\\ \n    ~~   ~~   \n...."Have you mooed today?"...\n']
 	},
 	{
 		re : /free(\-)?bsd/i,
