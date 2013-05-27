@@ -59,6 +59,9 @@ registerCommand('!rekursion', /^\!rekursion/i, function(from, to, message) {
 	bot.say(to, 'Gib \'!rekursion\' ein, um Rekursion erklärt zu bekommen!');
 });
 
+registerCommand('!trigger', /^\!trigger/i, function(from, to, message) {
+	bot.say(to, 'PENG!');
+});
 /*
 registerCommand('!troll', /^\!troll/i, function(from, to, message) {
 	message = "" + message.replace(/^\!troll[\s]*//*gi, '');
