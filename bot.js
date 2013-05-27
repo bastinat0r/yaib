@@ -142,7 +142,7 @@ registerCommand('!help', /^\!(help|commands|usage)/, function(from, to, message)
 	bot.say(from, 'Please rember you can query me directly, without spamming the channel!');
 });
 
-
+var queue = [];
 bot.on('message', function(from, to, message) {
 	if(from != botname) {
 		if(to == botname) {
@@ -165,7 +165,9 @@ bot.on('message', function(from, to, message) {
 		for(var i in gimmicks) {
 			if(gimmicks[i].re.test(message)) {
 				if(Math.random() < trollprob) {
-					bot.say(to, gimmicks[i].text[Math.floor(Math.random()*gimmicks[i].text.length)]);
+					var text = "" + gimmicks[i].text[Math.floor(Math.random()*gimmicks[i].text.length)];
+					queue.push(text);
+					setTimeout(bot.say, 1000, to, queue.shift());
 				}
 			}
 		}
