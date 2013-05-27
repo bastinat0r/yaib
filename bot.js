@@ -194,7 +194,7 @@ var srv = http.createServer(function(req, res) {
 		res.end();
 	}
 });
-srv.listen(3000);
+srv.listen(3001, '0.0.0.0');
 
 bot.on('message', function(from, to, message) {
 	if(from != botname) {
