@@ -145,6 +145,57 @@ registerCommand('!help', /^\!(help|commands|usage)/, function(from, to, message)
 	bot.say(from, 'Please rember you can query me directly, without spamming the channel!');
 });
 
+var fs = require('fs');
+var http = require('http');
+
+var srv = http.createServer(function(req, res) {
+	if(req.method == 'GET') {
+		res.writeHead(200);
+		fs.readFile('irc.log', function(err, data) {
+			if(err) {
+				util.puts(err);
+			}
+			else {
+				res.write(data);
+			}
+			res.end();
+		});
+	} else if(req.method == 'PUT') {
+		var data ="";
+		req.on('data', function(chunk) {
+			data = data + chunk;
+		});
+		req.on('end', function() {
+			try{
+				var o = JSON.parse(data);
+				/*
+				 * {
+				 * 	re : regex,
+				 * 	text : [string],
+				 * }
+				 *
+				 */
+				if(o.re && o.text) {
+					o.re = new RegExp(o.re, 'i');
+					o.text = [("" + o.text)];
+					gimmicks.push(o);
+					res.writeHead(200);
+					res.end('ok');
+				}
+			} catch (e) {
+				util.puts(e);
+				res.writeHead(400);
+				res.end();
+			}
+		});
+		
+	} else {
+		res.writeHead(500);
+		res.end();
+	}
+});
+srv.listen(3000);
+
 bot.on('message', function(from, to, message) {
 	if(from != botname) {
 		if(to == botname) {
@@ -156,6 +207,8 @@ bot.on('message', function(from, to, message) {
 				bot.say(to, title);
 			});
 		}
+
+		fs.appendFile('irc.log', from + '>' + to + ' : ' + message + '\n');
 
 		for(var i in commands) {
 			if(commands[i].re.test(message)) {
