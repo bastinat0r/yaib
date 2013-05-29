@@ -69,11 +69,11 @@ module.exports.list = [
 	},
 	{
 		re : /(kernel|colonel)/i,
-		text : ['General! *Salutiergeräush*']
+		text : ['Colonel! *Salutiergeräush*']
 	},
 	{
 		re : /private/i,
-		text : ['Kernel Panic! *Salutiergeräush*']
+		text : ['Private! *Salutiergeräush*']
 	},
 	{
 		re : /major/i,
