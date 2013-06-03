@@ -52,7 +52,7 @@ module.exports.list = [
 		text : ['Wer "Windows" sagt, braucht nicht mit Steinen zu werfen!']
 	},
 	{
-		re : /debian/i,
+		re : /^debian[\.\!\?]?$/i,
  		text : ['Wo "Debian" gesagt wird, sind Trolle nicht weit!', 'Mit links- oder rechtsdrehendem Debianstrudel?', '         (__) \n         (oo) \n   /------\\/ \n  / |    ||   \n *  /\\---/\\ \n    ~~   ~~   \n...."Have you mooed today?"...\n']
 	},
 	{
