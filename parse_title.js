@@ -1,6 +1,10 @@
 var http = require('http');
 var https = require('https');
 var util = require('util');
+var Shred = require('shred');
+
+
+var shred = new Shred();
 
 function parse_title(html, cb) {
 		html = "" + html.replace(/[\r\n]/g, '');
@@ -12,7 +16,20 @@ function parse_title(html, cb) {
 };
 
 function from_url(url, cb) {
-	if(/https:\/\//gi.test(url)) {
+	util.puts(url);
+	var req =shred.get({
+		url : url,
+		timeout : 10000,
+		on : {
+			200 : function(response) {
+				parse_title(response.content.body, cb);
+			},
+			response : function(response) {
+				cb('statuscode: ' + response.status)
+			}
+		}
+	});
+/*	if(/https:\/\//gi.test(url)) {
 		https.get(url, function(res) {
 			data = "";
 			res.on('data', function(chunk) {
@@ -38,6 +55,7 @@ function from_url(url, cb) {
 			util.puts(e);
 		});;
 	};
+*/
 };
 
 exports.from_html = parse_title;

@@ -7,7 +7,9 @@ var ical = require('ical');
 var twittersearch = require('./search.js');
 var n39Status = require('./n39SpaceApi.js');
 var gimmicks = require('./gimmicks.js').list;
+
 var botname = process.argv[2] ? process.argv[2] : "bastinat0r_bot";
+
 
 var trollprob = 1;
 
