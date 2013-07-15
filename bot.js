@@ -86,7 +86,7 @@ registerCommand('!kekse', /^\!keks[e]?/i, function(from, to, message) {
 	bot.say(to, 'Hat irgendjemand die Kekfe gefehn? Ich finde fie nicht. *Schmatzgeräusch*');
 });
 registerCommand('!fortune', /^\!fortune/i, function(from, to, message) {
-	exec('fortune -s', function(err, stdout, stderr) {
+	exec('fortune -s /usr/share/games/fortunes de off', function(err, stdout, stderr) {
 		bot.say(to, stdout);
 	});
 });
