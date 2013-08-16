@@ -221,7 +221,7 @@ bot.on('message', function(from, to, message) {
 		}
 		for(var i in gimmicks) {
 			if(gimmicks[i].re.test(message)) {
-				if(Math.random() < trollprob) {
+				if(Math.random() < trollprob || !gimmicks[i].troll) {
 					var text = "" + gimmicks[i].text[Math.floor(Math.random()*gimmicks[i].text.length)];
 					setTimeout(function() {
 						bot.say(to, text);
