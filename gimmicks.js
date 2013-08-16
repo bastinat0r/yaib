@@ -124,5 +124,15 @@ module.exports.list = [
 		text : ['Aaaach, Schaf wird überbewertet!'],
 		troll: true
 	},
+	{
+		re : /^Keks(e)?[\W]?/i,
+		text : ['Die Freunde und Förderer des Krümelmonsters bedanken sich für Ihren Beitrag.','Eine Packung Scherzkekse für alle!','Kekse: Krümlig, süß und lecker!', 'Krepel ist keine schmackhafte Backware!']
+		troll: false
+	},
+	{
+		re : /^Kaffe(e)?[\W]?/i,
+		text : ['Kaffe, schön schwarz und schön lecker!', 'Kaffee mit Kaffee. Ohne (Katzen-)Scheiß!']
+		troll: false
+	},
 
 ]
