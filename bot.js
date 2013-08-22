@@ -140,8 +140,9 @@ registerCommand('!=', /^\!\=/, function(from, to, message) {
 	message = message.split(/\s/);
 	util.puts(util.inspect(message));
 	message = message.join('');
-	if(/^\d[\d\+\-\*\/\.]+\d$/g.test(message)) {
+	if(/^[\dπ][\d\+\-\*\/\.π()]+[\dπ]$/g.test(message)) {
 		try {
+			var π = Math.PI;
 			bot.say(to, eval(message));
 		} catch (e)
 		{
