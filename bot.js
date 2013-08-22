@@ -135,6 +135,21 @@ registerCommand('!forkme', /^\!forkme/, function(from, to, message) {
 	bot.say(to, 'Fork me @ https://github.com/bastinat0r/yaib/');
 });
 
+registerCommand('!=', /^\!\=/, function(from, to, message) {
+	message = message.slice(2);
+	message = message.split(/\s/);
+	util.puts(util.inspect(message));
+	message = message.join('');
+	if(/^\d[\d\+\-\*\/\.]+\d$/g.test(message)) {
+		try {
+			bot.say(to, eval(message));
+		} catch (e)
+		{
+			util.puts(e)
+		}
+	}
+});
+
 
 var help = "";
 for(var i in commands) {
